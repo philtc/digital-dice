@@ -131,8 +131,8 @@ export default function App() {
       </ScrollView>
 
       <View style={styles.chooseActions}>
-        <Pressable accessibilityRole="button" onPress={() => setDraftSelection({ 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0 })} style={[styles.secondaryBtn, { backgroundColor: colors.secondaryBg, borderColor: colors.secondaryBorder }] }>
-          <Text style={[styles.secondaryBtnText, { color: colors.secondaryText }]}>Clear</Text>
+        <Pressable accessibilityRole="button" onPress={() => setDraftSelection({ 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0 })} style={[styles.secondaryBtn, styles.chooseBtn, { backgroundColor: colors.secondaryBg, borderColor: colors.secondaryBorder, flex: 1 }] }>
+          <Text style={[styles.chooseBtnText, { color: colors.secondaryText }]}>Clear</Text>
         </Pressable>
         <Pressable
           accessibilityRole="button"
@@ -142,9 +142,9 @@ export default function App() {
             setSavedSelection(sanitized);
             setTab('Home');
           }}
-          style={[styles.primaryBtn, { backgroundColor: colors.primaryBg }]}
+          style={[styles.primaryBtn, styles.chooseBtn, { backgroundColor: colors.primaryBg, flex: 1 }]}
         >
-          <Text style={[styles.primaryBtnText, { color: colors.primaryText }]}>Save</Text>
+          <Text style={[styles.chooseBtnText, { color: colors.primaryText }]}>Save</Text>
         </Pressable>
       </View>
     </View>
@@ -320,6 +320,18 @@ const styles = StyleSheet.create({
   },
   primaryBtnText: {
     color: '#fff',
+    fontSize: 18,
+    fontWeight: '800',
+    letterSpacing: 0.5,
+  },
+  // Shared style for Dice screen action buttons to ensure equal size
+  chooseBtn: {
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    borderRadius: 14,
+    alignItems: 'center',
+  },
+  chooseBtnText: {
     fontSize: 18,
     fontWeight: '800',
     letterSpacing: 0.5,
