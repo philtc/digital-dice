@@ -1,0 +1,36 @@
+# Node / Expo / React Native
+node_modules/
+.expo/
+.expo-shared/
+web-build/
+dist/
+build/
+
+# Android
+android/.gradle/
+android/.idea/
+android/local.properties
+android/app/build/
+android/build/
+
+# iOS
+ios/Pods/
+ios/build/
+ios/*.xcodeproj/project.xcworkspace/
+ios/*.xcworkspace/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*
+
+# Metro / cache
+.expo-dev-cache/
+.expo-web-cache/
+.cache/
