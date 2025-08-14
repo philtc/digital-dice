@@ -46,7 +46,7 @@ export default function App() {
           boxBorder: '#4B4B4B', // --color-gray-dark-200
           pillBg: '#373737',
           pillBorder: '#4B4B4B',
-          primaryBg: '#A9DC76', // --color-green-dark for primary actions
+          primaryBg: '#78DCE8', // use blue as primary
           primaryText: '#232323',
           secondaryBg: '#373737',
           secondaryBorder: '#4B4B4B',
@@ -72,8 +72,8 @@ export default function App() {
           accentOrange: '#FFD866',
           accentGreen: '#A9DC76',
           accentBlue: '#78DCE8',
-          // Primary uses accentGreen
-          primaryBg: '#A9DC76',
+          // Primary uses accentBlue
+          primaryBg: '#78DCE8',
           primaryText: '#111',
           secondaryBg: '#fff',
           secondaryBorder: '#c7d2fe',
@@ -114,7 +114,7 @@ export default function App() {
 
   const renderChoose = () => (
     <View style={[styles.content, { flex: 1, width: '100%' }]}> 
-      <Text style={[styles.title, { color: colors.text }]}>Choose your dice</Text>
+      <Text style={[styles.title, { color: colors.text }]}>Dice</Text>
       <Text style={[styles.paragraph, { color: colors.subtext }]}>Use + to add, − to remove. Clear to reset. Save to apply.</Text>
       <ScrollView contentContainerStyle={styles.grid} style={{ alignSelf: 'stretch' }}>
         {[4, 6, 8, 10, 12, 20].map((sides) => (
@@ -167,8 +167,8 @@ export default function App() {
 
   const renderAbout = () => (
     <View style={styles.content}>
-      <Text style={styles.title}>About</Text>
-      <Text style={styles.paragraph}>Digital Dice — a simple dice roller built with Expo/React Native.</Text>
+      <Text style={[styles.title, { color: colors.text }]}>About</Text>
+      <Text style={[styles.paragraph, { color: colors.text }]}>Digital Dice — a simple dice roller built with Expo/React Native.</Text>
     </View>
   );
 
@@ -192,7 +192,7 @@ export default function App() {
       <View style={styles.body}>{renderContent()}</View>
       <View style={[styles.tabBar, { backgroundColor: colors.tabBg, borderTopColor: colors.tabBorder }]}>
         <TabButton label="Home" active={tab === 'Home'} onPress={() => setTab('Home')} colors={colors} />
-        <TabButton label="Choose your dice" active={tab === 'Choose'} onPress={() => setTab('Choose')} colors={colors} />
+        <TabButton label="Dice" active={tab === 'Choose'} onPress={() => setTab('Choose')} colors={colors} />
         <TabButton label="Settings" active={tab === 'Settings'} onPress={() => setTab('Settings')} colors={colors} />
         <TabButton label="About" active={tab === 'About'} onPress={() => setTab('About')} colors={colors} />
       </View>
@@ -311,11 +311,11 @@ const styles = StyleSheet.create({
   primaryBtn: {
     marginTop: 6,
     paddingVertical: 16,
-    paddingHorizontal: 28,
+    paddingHorizontal: 16,
     backgroundColor: '#3b5bfd',
     borderRadius: 14,
     elevation: 1,
-    minWidth: 200,
+    alignSelf: 'stretch',
     alignItems: 'center',
   },
   primaryBtnText: {
