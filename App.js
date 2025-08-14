@@ -38,20 +38,26 @@ export default function App() {
   const colors = useMemo(() => (
     theme === 'dark'
       ? {
-          bg: '#0f172a',
-          text: '#e5e7eb',
-          subtext: '#cbd5e1',
-          boxBg: '#111827',
-          boxBorder: '#334155',
-          pillBg: '#1f2937',
-          pillBorder: '#374151',
-          primaryBg: '#4f46e5',
-          primaryText: '#ffffff',
-          secondaryBg: '#111827',
-          secondaryBorder: '#334155',
-          secondaryText: '#cbd5e1',
-          tabBg: '#111827',
-          tabBorder: '#334155',
+          // Provided dark palette
+          bg: '#232323', // --color-bg-dark
+          text: '#e9e9e9',
+          subtext: '#cfcfcf',
+          boxBg: '#373737', // --color-gray-dark-100
+          boxBorder: '#4B4B4B', // --color-gray-dark-200
+          pillBg: '#373737',
+          pillBorder: '#4B4B4B',
+          primaryBg: '#A9DC76', // --color-green-dark for primary actions
+          primaryText: '#232323',
+          secondaryBg: '#373737',
+          secondaryBorder: '#4B4B4B',
+          secondaryText: '#e0e0e0',
+          tabBg: '#232323',
+          tabBorder: '#4B4B4B',
+          // Accents
+          accentRed: '#FF6188',
+          accentOrange: '#FFD866',
+          accentGreen: '#A9DC76',
+          accentBlue: '#78DCE8',
         }
       : {
           bg: '#f0f4ff',
@@ -61,8 +67,14 @@ export default function App() {
           boxBorder: '#333',
           pillBg: '#eef2ff',
           pillBorder: '#c7d2fe',
-          primaryBg: '#3b5bfd',
-          primaryText: '#fff',
+          // Use same accent palette as dark
+          accentRed: '#FF6188',
+          accentOrange: '#FFD866',
+          accentGreen: '#A9DC76',
+          accentBlue: '#78DCE8',
+          // Primary uses accentGreen
+          primaryBg: '#A9DC76',
+          primaryText: '#111',
           secondaryBg: '#fff',
           secondaryBorder: '#c7d2fe',
           secondaryText: '#1f2a79',
@@ -203,14 +215,14 @@ function TabButton({ label, active, onPress, colors }) {
 
 function DieCard({ sides, count, onAdd, onMinus, colors }) {
   return (
-    <View style={[styles.card, { borderColor: '#2d3a8c', backgroundColor: colors.boxBg }]}> 
+    <View style={[styles.card, { borderColor: colors.boxBorder, backgroundColor: colors.boxBg }]}> 
       <Text style={[styles.cardTitle, { color: colors.text }]}>D{String(sides)}</Text>
       <Text style={[styles.cardCount, { color: colors.text }]}>{count}</Text>
-      <Pressable onPress={onMinus} style={styles.cardMinusBtn} hitSlop={10} accessibilityLabel={`Remove D${sides}`}>
-        <Text style={styles.cardMinusText}>−</Text>
+      <Pressable onPress={onMinus} style={[styles.cardMinusBtn, { backgroundColor: colors.boxBg, borderColor: colors.accentRed }]} hitSlop={10} accessibilityLabel={`Remove D${sides}`}>
+        <Text style={[styles.cardMinusText, { color: colors.accentRed }]}>−</Text>
       </Pressable>
-      <Pressable onPress={onAdd} style={styles.cardPlusBtn} hitSlop={10} accessibilityLabel={`Add D${sides}`}>
-        <Text style={styles.cardPlusText}>+</Text>
+      <Pressable onPress={onAdd} style={[styles.cardPlusBtn, { backgroundColor: colors.boxBg, borderColor: colors.accentBlue }]} hitSlop={10} accessibilityLabel={`Add D${sides}`}>
+        <Text style={[styles.cardPlusText, { color: colors.accentBlue }]}>+</Text>
       </Pressable>
     </View>
   );
