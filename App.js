@@ -105,7 +105,7 @@ export default function App() {
             </>
           )}
         </View>
-        <Pressable accessibilityRole="button" onPress={onRoll} style={[styles.primaryBtn, { backgroundColor: colors.primaryBg }]}>
+        <Pressable accessibilityRole="button" onPress={onRoll} style={[styles.primaryBtn, { backgroundColor: colors.primaryBg, alignSelf: 'stretch' }]}>
           <Text style={[styles.primaryBtnText, { color: colors.primaryText }]}>Roll</Text>
         </Pressable>
       </View>
@@ -127,11 +127,10 @@ export default function App() {
             colors={colors}
           />
         ))}
-        <View style={{ height: 12 }} />
       </ScrollView>
 
       <View style={styles.chooseActions}>
-        <Pressable accessibilityRole="button" onPress={() => setDraftSelection({ 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0 })} style={[styles.secondaryBtn, styles.chooseBtn, { backgroundColor: colors.secondaryBg, borderColor: colors.secondaryBorder, flex: 1 }] }>
+        <Pressable accessibilityRole="button" onPress={() => setDraftSelection({ 4: 0, 6: 0, 8: 0, 10: 0, 12: 0, 20: 0 })} style={[styles.chooseBtn, styles.secondaryBtn, { backgroundColor: colors.secondaryBg, borderColor: colors.secondaryBorder, borderWidth: 1, flex: 1, marginTop: 0 }]}> 
           <Text style={[styles.chooseBtnText, { color: colors.secondaryText }]}>Clear</Text>
         </Pressable>
         <Pressable
@@ -142,7 +141,7 @@ export default function App() {
             setSavedSelection(sanitized);
             setTab('Home');
           }}
-          style={[styles.primaryBtn, styles.chooseBtn, { backgroundColor: colors.primaryBg, flex: 1 }]}
+          style={[styles.chooseBtn, styles.primaryBtn, { backgroundColor: colors.primaryBg, flex: 1, marginTop: 0, elevation: 0 }]}
         >
           <Text style={[styles.chooseBtnText, { color: colors.primaryText }]}>Save</Text>
         </Pressable>
@@ -250,6 +249,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 8,
     paddingHorizontal: 4,
+    paddingBottom: 12,
   },
   title: {
     fontSize: 24,
@@ -315,7 +315,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#3b5bfd',
     borderRadius: 14,
     elevation: 1,
-    alignSelf: 'stretch',
+    borderWidth: 1,
+    borderColor: 'transparent',
     alignItems: 'center',
   },
   primaryBtnText: {
@@ -330,6 +331,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 14,
     alignItems: 'center',
+    height: 56,
+    justifyContent: 'center',
   },
   chooseBtnText: {
     fontSize: 18,
