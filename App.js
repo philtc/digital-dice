@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { Button, StyleSheet, Text, View, Pressable, ScrollView } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Button, StyleSheet, Text, View, Pressable, ScrollView, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
@@ -12,6 +12,17 @@ export default function App() {
   const [draftSelection, setDraftSelection] = useState({ 4: 0, 6: 1, 8: 0, 10: 0, 12: 0, 20: 0 });
 
   const [rolls, setRolls] = useState([]); // array of numbers from the last roll
+  // Animation for subtle feedback on roll
+  const rollAnim = useRef(new Animated.Value(0)).current;
+
+  const triggerRollAnim = useCallback(() => {
+    rollAnim.stopAnimation();
+    rollAnim.setValue(0);
+    Animated.sequence([
+      Animated.timing(rollAnim, { toValue: 1, duration: 120, useNativeDriver: true }),
+      Animated.timing(rollAnim, { toValue: 0, duration: 180, useNativeDriver: true }),
+    ]).start();
+  }, [rollAnim]);
 
   const totalDice = useMemo(() => Object.values(savedSelection).reduce((a, b) => a + b, 0), [savedSelection]);
   const selectionLabel = useMemo(() => {
@@ -33,7 +44,8 @@ export default function App() {
       }
     }
     setRolls(next);
-  }, [savedSelection]);
+    triggerRollAnim();
+  }, [savedSelection, triggerRollAnim]);
 
   const colors = useMemo(() => (
     theme === 'dark'
@@ -90,17 +102,41 @@ export default function App() {
         <Text style={[styles.title, { color: colors.text }]}>Digital Dice</Text>
         <Text style={[styles.subtitle, { color: colors.subtext }]}>{selectionLabel}</Text>
         <View style={[styles.resultsBox, { backgroundColor: colors.boxBg, borderColor: colors.boxBorder }]}>
+          {/* Subtle blue tint overlay on roll */}
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              StyleSheet.absoluteFill,
+              {
+                backgroundColor: colors.accentBlue,
+                opacity: rollAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 0.08] }),
+                borderRadius: 16,
+              },
+            ]}
+          />
           {rolls.length === 0 ? (
-            <Text style={[styles.resultsHint, { color: colors.subtext }]}>Tap Roll to roll your selected dice</Text>
+            <Animated.Text
+              style={[
+                styles.resultsHint,
+                { color: colors.subtext },
+                { transform: [{ scale: rollAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.98] }) }] },
+              ]}
+            >
+              Tap Roll to roll your selected dice
+            </Animated.Text>
           ) : (
             <>
-              <View style={styles.resultsRow}>
-                {rolls.map((r, i) => (
-                  <View key={i} style={[styles.resultPill, { backgroundColor: colors.pillBg, borderColor: colors.pillBorder }]}>
-                    <Text style={[styles.resultPillText, { color: colors.text }]}>{r}</Text>
-                  </View>
-                ))}
-              </View>
+              <Animated.View
+                style={{ transform: [{ scale: rollAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.98] }) }] }}
+              >
+                <View style={styles.resultsRow}>
+                  {rolls.map((r, i) => (
+                    <View key={i} style={[styles.resultPill, { backgroundColor: colors.pillBg, borderColor: colors.pillBorder }]}>
+                      <Text style={[styles.resultPillText, { color: colors.text }]}>{r}</Text>
+                    </View>
+                  ))}
+                </View>
+              </Animated.View>
               <Text style={[styles.totalText, { color: colors.text }]}>Total: {total}</Text>
             </>
           )}
@@ -217,9 +253,11 @@ function DieCard({ sides, count, onAdd, onMinus, colors }) {
     <View style={[styles.card, { borderColor: colors.boxBorder, backgroundColor: colors.boxBg }]}> 
       <Text style={[styles.cardTitle, { color: colors.text }]}>D{String(sides)}</Text>
       <Text style={[styles.cardCount, { color: colors.text }]}>{count}</Text>
+
       <Pressable onPress={onMinus} style={[styles.cardMinusBtn, { backgroundColor: colors.boxBg, borderColor: colors.accentRed }]} hitSlop={10} accessibilityLabel={`Remove D${sides}`}>
         <Text style={[styles.cardMinusText, { color: colors.accentRed }]}>−</Text>
       </Pressable>
+
       <Pressable onPress={onAdd} style={[styles.cardPlusBtn, { backgroundColor: colors.boxBg, borderColor: colors.accentBlue }]} hitSlop={10} accessibilityLabel={`Add D${sides}`}>
         <Text style={[styles.cardPlusText, { color: colors.accentBlue }]}>+</Text>
       </Pressable>
