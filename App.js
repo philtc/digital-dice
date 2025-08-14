@@ -60,13 +60,13 @@ export default function App() {
           accentBlue: '#78DCE8',
         }
       : {
-          bg: '#f0f4ff',
+          bg: '#f5f8fb',
           text: '#111',
           subtext: '#333',
           boxBg: '#fff',
-          boxBorder: '#333',
-          pillBg: '#eef2ff',
-          pillBorder: '#c7d2fe',
+          boxBorder: '#d5dbe3',
+          pillBg: '#eef7fb',
+          pillBorder: '#cfeaf5',
           // Use same accent palette as dark
           accentRed: '#FF6188',
           accentOrange: '#FFD866',
@@ -78,8 +78,8 @@ export default function App() {
           secondaryBg: '#fff',
           secondaryBorder: '#c7d2fe',
           secondaryText: '#1f2a79',
-          tabBg: '#e8ecff',
-          tabBorder: '#d0d7ff',
+          tabBg: '#eef7fb',
+          tabBorder: '#cfeaf5',
         }
   ), [theme]);
 
