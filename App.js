@@ -190,7 +190,7 @@ export default function App() {
   return (
     <View style={[styles.container, { backgroundColor: colors.bg }]}>
       <View style={styles.body}>{renderContent()}</View>
-      <View style={[styles.tabBar, { backgroundColor: colors.tabBg, borderTopColor: colors.tabBorder }]}>
+      <View style={[styles.tabBar, { backgroundColor: colors.tabBg, borderTopColor: colors.accentBlue }]}>
         <TabButton label="Home" active={tab === 'Home'} onPress={() => setTab('Home')} colors={colors} />
         <TabButton label="Dice" active={tab === 'Choose'} onPress={() => setTab('Choose')} colors={colors} />
         <TabButton label="Settings" active={tab === 'Settings'} onPress={() => setTab('Settings')} colors={colors} />
@@ -203,10 +203,10 @@ export default function App() {
 
 function TabButton({ label, active, onPress, colors }) {
   return (
-    <Pressable onPress={onPress} style={[styles.tabBtn, active && styles.tabBtnActive]} hitSlop={8}>
+    <Pressable onPress={onPress} style={[styles.tabBtn, active && styles.tabBtnActive, active && { backgroundColor: colors.accentBlue }]} hitSlop={8}>
       <Text style={[
         styles.tabLabel,
-        { color: active ? colors.text : colors.subtext },
+        { color: active ? colors.primaryText : colors.subtext },
         active && styles.tabLabelActive,
       ]}>{label}</Text>
     </Pressable>
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabBtnActive: {
-    backgroundColor: '#dbe2ff',
+    backgroundColor: 'transparent',
   },
   tabLabel: {
     fontSize: 14,
