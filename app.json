@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
+    "icon": "./Play_Store_Assets/icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -12,7 +13,11 @@
       "backgroundColor": "#FFFFFF"
     },
     "android": {
-      "package": "com.example.digitaldice"
+      "package": "com.example.digitaldice",
+      "adaptiveIcon": {
+        "foregroundImage": "./Play_Store_Assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     }
   }
 }
