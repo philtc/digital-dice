@@ -34,3 +34,8 @@ Thumbs.db
 .expo-dev-cache/
 .expo-web-cache/
 .cache/
+
+# Android signing
+android/keystore.jks
+android/keystore.properties
+android/app/release/

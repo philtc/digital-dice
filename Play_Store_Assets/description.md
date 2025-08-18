@@ -1,6 +1,10 @@
 # Digital Dice
 
-Quick, elegant dice rolls for tabletop, board games, and beyond.
+Has your child thrown your dice out the window in a fit of rage after loosing in snakes and ladders?
+Has your dog eaten your minted D&D dice?
+Has your toddler stored your dice in the toaster?
+
+*Digital Dice* solves these common problems and more by giving you quick, elegant dice rolls for tabletop, board games, and beyond.
 
 Experience a fast, finger-friendly dice roller with a clean, accessible design and smooth feedback.
 
@@ -13,6 +17,6 @@ Experience a fast, finger-friendly dice roller with a clean, accessible design a
 - Works great on phones and tablets
 
 ## Perfect for
-Board games, RPG sessions, teaching probability, or anytime you need fair, fast dice.
+Board games, RPG sessions, teaching maths, or anytime you need fair, fast dice.
 
 Roll with confidence — without hunting for physical dice.

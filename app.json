@@ -2,7 +2,7 @@
   "expo": {
     "name": "Digital Dice",
     "slug": "digital-dice",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./Play_Store_Assets/icon.png",
@@ -13,7 +13,8 @@
       "backgroundColor": "#FFFFFF"
     },
     "android": {
-      "package": "com.example.digitaldice",
+      "package": "com.chineeeasy.digitaldice",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./Play_Store_Assets/icon.png",
         "backgroundColor": "#FFFFFF"

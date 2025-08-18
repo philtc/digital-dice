@@ -1,4 +1,4 @@
-package com.example.digitaldice
+package com.chineeeasy.digitaldice
 
 import android.app.Application
 import android.content.res.Configuration
